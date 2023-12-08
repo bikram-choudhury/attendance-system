@@ -7,6 +7,7 @@ import { getCourseContext } from '../context/Course';
 export default function StudentList() {
     const { getCourseType } = getCourseContext();
     const { list: studentList } = getStudentContext();
+    console.log("studentList", studentList);
     return (
         <div className="content">
             <div className="row">

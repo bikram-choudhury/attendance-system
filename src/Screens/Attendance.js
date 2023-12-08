@@ -1,14 +1,15 @@
-import React from 'react'
-import { getMonths } from '../utils';
+import React, { useState } from 'react';
 import Filters from '../components/Filters';
 
+const initialState = {
+    course: null,
+    students: null
+}
 export default function Attendance() {
-    const month = 'jan';
-    const { name: monthName, days: daysOfMonth } = getMonths(month);
-    const studentList = [{
-        name: 'Bikram Choudhury',
-        present: [3, 6, 7]
-    }]
+    const [filter, setFilter] = useState(initialState);
+    const { students, course } = filter;
+    const daysOfMonth = course?.duration ?? 0;
+
     return (
         <div className="content">
             <div className="row">
@@ -16,14 +17,14 @@ export default function Attendance() {
                     <h4 className="page-title">Attendance Sheet</h4>
                 </div>
             </div>
-            <Filters />
+            <Filters updateFilter={setFilter} />
             <div className="row">
                 <div className="col-lg-12">
                     <div className="table-responsive">
                         <table className="table table-striped custom-table mb-0">
                             <thead>
                                 <tr>
-                                    <th>Employee</th>
+                                    <th>Student</th>
                                     {
                                         Array(daysOfMonth).fill('').map((v, idx) => <th key={idx}>{idx + 1}</th>)
                                     }
@@ -31,14 +32,14 @@ export default function Attendance() {
                             </thead>
                             <tbody>
                                 {
-                                    studentList.map((st, idx) => (
+                                    (students ?? []).map((st, idx) => (
                                         <tr key={`student_${idx}`}>
                                             <td>{st.name}</td>
                                             {
                                                 Array(daysOfMonth).fill('').map((v, idx) => (
                                                     <td key={`attd_${idx}`}>
                                                         {
-                                                            st.present.includes(idx + 1) ? (
+                                                            st.availableDays.includes(idx + 1) ? (
                                                                 <i className="fa fa-check text-success"></i>
                                                             ) : (
                                                                 <i className="fa fa-close text-danger"></i>

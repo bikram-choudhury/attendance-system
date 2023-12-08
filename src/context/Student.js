@@ -1,9 +1,10 @@
 import React, { createContext, useCallback, useContext, useState } from 'react';
+import { demoStudentList } from '../utils';
 
 const context = createContext(null);
 
 function StudentContext(props) {
-    const [list, setList] = useState([]);
+    const [list, setList] = useState(demoStudentList);
     const updateList = useCallback((student) => {
         if (!student || Object.prototype.toString.call(student) !== '[object Object]') return;
         const isExist = list.find(item => {
@@ -18,8 +19,13 @@ function StudentContext(props) {
         });
     }, [list.length]);
 
+    const getStudentListPerCourse = courseId => {
+        const students = list.filter(item => item.courseId === courseId);
+        return students;
+    }
+
     return (
-        <context.Provider value={{ list, updateList }}>
+        <context.Provider value={{ list, updateList, getStudentListPerCourse }}>
             {props.children}
         </context.Provider>
     )

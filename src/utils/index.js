@@ -64,10 +64,41 @@ const demoCourseList = [
         batchType: 'weekdays'
     }
 ];
+
+const demoStudentList = [
+    {
+        "name": "Shankar",
+        "contactNo": "+91 8756878858",
+        "qualificationId": "4",
+        "courseId": "1",
+        "joiningDate": "2023-12-08",
+        "id": 1,
+        "availableDays": []
+    },
+    {
+        "name": "Adnan",
+        "contactNo": "+91 2462368326",
+        "qualificationId": "1",
+        "courseId": "1",
+        "joiningDate": "2023-12-08",
+        "id": 2,
+        "availableDays": []
+    },
+    {
+        "name": "Tufail",
+        "contactNo": "+91 976967585",
+        "qualificationId": "3",
+        "courseId": "3",
+        "joiningDate": "2023-12-08",
+        "id": 3,
+        "availableDays": []
+    }
+];
 export {
     getMonths,
     formatDate,
     qualifications,
     demoCourseList,
+    demoStudentList,
     getQualificationName
 }
