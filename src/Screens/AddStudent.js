@@ -94,7 +94,7 @@ export default function AddStudent() {
                             }
                         </select>
                     </div>
-                    <div className="form-group">
+                    {/* <div className="form-group">
                         <label>Course Starting / Joining Date</label>
                         <input
                             className="form-control"
@@ -103,7 +103,7 @@ export default function AddStudent() {
                             value={formValues.joiningDate}
                             onChange={onChange}
                         />
-                    </div>
+                    </div> */}
                     <div className="m-t-20 text-center">
                         <button onClick={onSubmit} className="btn btn-primary submit-btn">Create</button>
                     </div>

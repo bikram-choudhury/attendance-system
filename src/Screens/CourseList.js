@@ -23,6 +23,7 @@ export default function CourseList() {
                                         <th>Description</th>
                                         <th>Duration</th>
                                         <th>Type</th>
+                                        <th>Start Date</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -35,6 +36,7 @@ export default function CourseList() {
                                                 <td>{course.description}</td>
                                                 <td>{course.duration}</td>
                                                 <td>{course.batchType.toUpperCase()}</td>
+                                                <td>{course.startDate}</td>
                                                 <td>
                                                     <button type="button" className="btn btn-primary">Edit</button>
                                                     <button type="button" className="btn btn-warning">Delete</button>

@@ -1,11 +1,13 @@
 import React, { useCallback, useState } from 'react'
 import { getCourseContext } from '../context/Course';
+import { formatDate } from '../utils';
 
 const initialState = {
     name: '',
     description: '',
     duration: '',
-    batchType: ''
+    batchType: '',
+    startDate: formatDate()
 }
 export default function AddCourse() {
     const batchTypeList = ['Weekdays', 'Weekends'];
@@ -91,6 +93,16 @@ export default function AddCourse() {
                             }
 
                         </div>
+                    </div>
+                    <div className="form-group">
+                        <label>Course Starting Date</label>
+                        <input
+                            className="form-control"
+                            type="date"
+                            name='joiningDate'
+                            value={formValues.startDate}
+                            onChange={onChange}
+                        />
                     </div>
                     <div className="m-t-20 text-center">
                         <button onClick={onSubmit} className="btn btn-primary submit-btn">Publish Course</button>

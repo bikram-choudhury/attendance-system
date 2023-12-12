@@ -19,13 +19,23 @@ function StudentContext(props) {
         });
     }, [list.length]);
 
+    const updateStudent = useCallback((student) => {
+        if (!student || Object.prototype.toString.call(student) !== '[object Object]') return;
+        const studentObj = list.find(item => {
+            return item.id === student.id
+        });
+        studentObj.availableDays = student.availableDays;
+        setList(list);
+
+    }, [list.length])
+
     const getStudentListPerCourse = courseId => {
         const students = list.filter(item => item.courseId === courseId);
         return students;
     }
 
     return (
-        <context.Provider value={{ list, updateList, getStudentListPerCourse }}>
+        <context.Provider value={{ list, updateList, updateStudent, getStudentListPerCourse }}>
             {props.children}
         </context.Provider>
     )

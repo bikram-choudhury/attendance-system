@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import styles from '../../styles/App';
 import { getCourseContext } from '../../context/Course';
 import { getStudentContext } from '../../context/Student';
@@ -8,7 +8,13 @@ export default function Filters({ updateFilter }) {
     const [studentList, setStudentList] = useState([]);
 
     const { list: courseList } = getCourseContext();
-    const { getStudentListPerCourse } = getStudentContext();
+    const { list: students, getStudentListPerCourse } = getStudentContext();
+
+    const courseRef = useRef();
+
+    useEffect(() => {
+        console.log(courseRef.current);
+    }, [JSON.stringify(students)]);
 
     const onCourseSelect = useCallback((evnt) => {
         const courseId = Number(evnt.target.value || 0);
@@ -37,7 +43,7 @@ export default function Filters({ updateFilter }) {
             <div className="col-sm-6 col-md-3">
                 <label className="focus-label">Select Course</label>
                 <div className="form-group form-focus">
-                    <select style={styles['width-100']} className="select" onChange={onCourseSelect}>
+                    <select style={styles['width-100']} className="select" onChange={onCourseSelect} ref={courseRef}>
                         <option value="">Please select</option>
                         {
                             courseList.map(course => {

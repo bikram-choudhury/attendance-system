@@ -21,6 +21,16 @@ function formatDate(dt = '') {
 
     return [year, month, day].join('-');
 }
+function getDayDiff(dt = '') {
+    const toDate = new Date();
+    const fromDate = dt ? new Date(dt): new Date();
+    const isFuture = fromDate > toDate;
+
+    const diffTime = Math.abs(toDate - fromDate);
+    const days = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    return { days, isFuture };
+}
 function getQualificationName(qId) {
     const qualification = qualifications.find(q => q.id == qId);
     if(!qualification) return '';
@@ -40,28 +50,32 @@ const demoCourseList = [
         name: 'Frontend',
         description: 'FrontEnd = HTML + CSS + JS',
         duration: 30,
-        batchType: 'weekdays'
+        batchType: 'weekdays',
+        startDate: "2023-12-01",
     },
     {
         id: 2,
         name: 'Frontend',
         description: 'FrontEnd = HTML + CSS + JS',
         duration: 30,
-        batchType: 'weekend'
+        batchType: 'weekend',
+        startDate: "2023-12-08",
     },
     {
         id: 3,
         name: 'Java',
         description: 'Core Java + Advance Java',
         duration: 60,
-        batchType: 'weekdays'
+        batchType: 'weekdays',
+        startDate: "2023-11-08",
     },
     {
         id: 4,
         name: 'Core Java',
         description: '',
         duration: 45,
-        batchType: 'weekdays'
+        batchType: 'weekdays',
+        startDate: "2023-12-20",
     }
 ];
 
@@ -71,25 +85,22 @@ const demoStudentList = [
         "contactNo": "+91 8756878858",
         "qualificationId": "4",
         "courseId": "1",
-        "joiningDate": "2023-12-08",
         "id": 1,
-        "availableDays": []
+        "availableDays": [2, 5, 6]
     },
     {
         "name": "Adnan",
         "contactNo": "+91 2462368326",
         "qualificationId": "1",
         "courseId": "1",
-        "joiningDate": "2023-12-08",
         "id": 2,
-        "availableDays": []
+        "availableDays": [12]
     },
     {
         "name": "Tufail",
         "contactNo": "+91 976967585",
         "qualificationId": "3",
         "courseId": "3",
-        "joiningDate": "2023-12-08",
         "id": 3,
         "availableDays": []
     }
@@ -97,6 +108,7 @@ const demoStudentList = [
 export {
     getMonths,
     formatDate,
+    getDayDiff,
     qualifications,
     demoCourseList,
     demoStudentList,
